@@ -6,6 +6,9 @@ export class EnvironmentVariables {
   APP_PORT: number = 4000;
 
   @IsString()
+  APP_REDIRECT_TO_AFTER_NEW_USER_REGISTRATION: string = '/dashboard';
+
+  @IsString()
   POSTGRES_HOST: string = 'localhost';
 
   @IsNumber()
