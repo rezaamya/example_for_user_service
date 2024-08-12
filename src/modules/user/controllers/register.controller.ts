@@ -1,14 +1,20 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Logger, Post } from '@nestjs/common';
 
 import {
   RegisterRequestBodyDto,
   RegisterResponseDto,
 } from '../dtos/register.dto';
 import { RegisterService } from '../services/register.service';
+import { ErrorsUtilitiesService } from '../../utils/services/errors-utilities.service';
 
 @Controller('v1/register')
 export class RegisterController {
-  constructor(private readonly registerService: RegisterService) {}
+  private readonly logger = new Logger(RegisterController.name);
+
+  constructor(
+    private readonly registerService: RegisterService,
+    private readonly errorsUtilitiesService: ErrorsUtilitiesService,
+  ) {}
 
   @Post()
   async register(
@@ -21,9 +27,7 @@ export class RegisterController {
         body.password,
       );
     } catch (e) {
-      //TODO
-      // Handle Error
-      console.log(e);
+      this.errorsUtilitiesService.handleError(e, this.logger);
     }
   }
 }

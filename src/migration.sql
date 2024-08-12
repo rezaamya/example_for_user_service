@@ -19,6 +19,7 @@ $$
                                        FROM migration
                                        WHERE meta_key = 'version');
         DECLARE v1_0_0 VARCHAR(20) := '001.000.000';
+        DECLARE v1_0_1 VARCHAR(20) := '001.000.001';
     BEGIN
 
         -- v1.0.0
@@ -56,6 +57,15 @@ $$
 
             UPDATE migration
             SET meta_value = v1_0_0
+            WHERE meta_key = 'version';
+        END IF;
+
+        -- v1.0.1
+        IF version < v1_0_1 THEN
+            ALTER TABLE users ADD "emailVerified" boolean DEFAULT false;
+
+            UPDATE migration
+            SET meta_value = v1_0_1
             WHERE meta_key = 'version';
         END IF;
 

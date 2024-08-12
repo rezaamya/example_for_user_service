@@ -9,6 +9,9 @@ export class EnvironmentVariables {
   APP_REDIRECT_TO_AFTER_NEW_USER_REGISTRATION: string = '/dashboard';
 
   @IsString()
+  APP_REDIRECT_TO_AFTER_NEW_USER_LOGIN: string = '/dashboard';
+
+  @IsString()
   POSTGRES_HOST: string = 'localhost';
 
   @IsNumber()

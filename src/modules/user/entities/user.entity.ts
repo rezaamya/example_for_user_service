@@ -10,4 +10,5 @@ export type UserEntity = {
   registeredBy: (typeof UserRegisteredBy)[keyof typeof UserRegisteredBy];
   registeredAt: Date;
   updatedAt: Date;
+  emailVerified: boolean;
 };
